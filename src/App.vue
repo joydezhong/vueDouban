@@ -1,17 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @upMenu="onMenu"/>
+    
+    <div class="middle">
+      <SideBar ref="sidebar" />
+      <div class="mdui-container doc-container">
+        <router-view/>
+      </div>
+    </div>
+   	
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Header from './layouts/Header'
+import SideBar from './layouts/SideBar'
 
 export default {
   name: 'app',
+  data() {
+    return {
+     
+    }
+  },
   components: {
-    HelloWorld
+    Header,
+    SideBar
+  },
+  mounted() {
+      
+  },  
+  methods: {
+    onMenu(v){
+      this.downSideBar(v);
+    },
+    downSideBar(v){
+      this.$refs.sidebar.handleSideBar(v);
+    }
   }
 }
 </script>
@@ -23,6 +49,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0px;
+}
+.middle{
+  clear: both;
+  margin-top: 64px;
+}
+.mdui-container{
+  margin-top: 100px;
 }
 </style>
