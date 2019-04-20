@@ -1,6 +1,6 @@
 <template>
-	<div class="headerWrap">
-		<div class="mdui-appbar">
+	<div>
+		<div class="mdui-appbar mdui-appbar-fixed">
 	    <div class="mdui-toolbar mdui-color-theme">
 	      <a href="javascript:;" class="mdui-btn mdui-btn-icon" @click="handleMenu(!isClick)"><i class="mdui-icon material-icons">menu</i></a>
 	      <a href="#/" class="mdui-typo-headline">LOGO</a>
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import Vue from "vue";
 
 import loginDialog from "../../components/loginDialog"
 
@@ -38,13 +37,13 @@ export default {
     }
   },
   mounted() {
-    
+
   },
   methods: {
     handleMenu(v){
       this.isClick = v;
       this.$emit('upMenu', this.isClick);
-      
+
     },
     handleDialog(v){
     	this.isDialog = v;

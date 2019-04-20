@@ -1,7 +1,7 @@
 <template>
 	<div class="mdui-drawer" id="drawer">
 	  <ul class="mdui-list" mdui-collapse="{accordion: true}">
-	  	
+
 	  	<template v-for="(item, index) in sideMenu">
 	  		<li class="mdui-collapse-item" :key="index">
 			    <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
@@ -16,7 +16,7 @@
 			    </ul>
 			  </li>
       </template>
-	  	
+
 	    <!--<li class="mdui-collapse-item">
 		    <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
 		      <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
@@ -88,9 +88,6 @@
 
 
 <style scoped>
-	.mdui-drawer{
-		margin-top: 64px;
-	}
 	.mdui-list-item-content{
 		text-align: left;
 	}
@@ -99,6 +96,5 @@
     min-height: 48px;
     line-height: 48px;
 		text-align: left;
-		/*font-weight: 700;*/
 	}
 </style>

@@ -28,7 +28,7 @@ let asideMenuConfig = [
   },
   {
     name: '菜单包含子菜单',
-    icon: 'people',
+    icon: 'settings',
     children: [
       {
         name: '下拉子项一',
@@ -38,12 +38,12 @@ let asideMenuConfig = [
       {
         name: '下拉子项二',
         path: '',
-        icon: '/666',
+        icon: '/777',
       },
       {
         name: '下拉子项三',
         path: '',
-        icon: '/666',
+        icon: '/888',
       }
     ],
   },
