@@ -88,26 +88,35 @@
       </div>
     </el-dialog>
 
+    <!--标题  图片 评分 信息  描述 时间-->
     <!--新增界面-->
-    <el-dialog title="新增" v-model="addFormVisible" :close-on-click-modal="false">
+    <el-dialog title="新增" :visible.sync="addFormVisible" :close-on-click-modal="false">
       <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
-        <el-form-item label="姓名" prop="name">
-          <el-input v-model="addForm.name" auto-complete="off"></el-input>
+        <el-form-item label="书名" prop="title">
+          <el-input v-model="addForm.title" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="性别">
-          <el-radio-group v-model="addForm.sex">
-            <el-radio class="radio" :label="1">男</el-radio>
-            <el-radio class="radio" :label="0">女</el-radio>
-          </el-radio-group>
+        <el-form-item label="图片" prop="bookImg">
+          <el-upload
+            class="avatar-uploader"
+            action="http://192.168.31.18:3000/api/upload"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            >
+            <img v-if="addForm.bookImg" :src="addForm.bookImg" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
         </el-form-item>
-        <el-form-item label="年龄">
-          <el-input-number v-model="addForm.age" :min="0" :max="200"></el-input-number>
+        <el-form-item label="评分" prop="grade">
+          <el-input-number v-model="addForm.grade" :min="0" :max="10"></el-input-number>
         </el-form-item>
-        <el-form-item label="生日">
+        <el-form-item label="出版时间" prop="birth">
           <el-date-picker type="date" placeholder="选择日期" v-model="addForm.birth"></el-date-picker>
         </el-form-item>
-        <el-form-item label="地址">
-          <el-input type="textarea" v-model="addForm.addr"></el-input>
+        <el-form-item label="作者信息" prop="bookInfo">
+          <el-input v-model="addForm.bookInfo" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="描述" prop="description">
+          <el-input type="textarea" v-model="addForm.description"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -127,6 +136,8 @@
           title: '',
           author: ''
         },
+        imageUrl: '',
+
         users: [],
         pageSize: 10,
         pageNum: 1,
@@ -160,16 +171,20 @@
         },
         //新增界面数据
         addForm: {
-          name: '',
-          sex: -1,
-          age: 0,
+          title: '',
+          grade: '',
+          bookInfo: '',
+          bookImg: '',
           birth: '',
-          addr: ''
+          description: ''
         }
 
       }
     },
     methods: {
+      handleAvatarSuccess(res, file) {
+        this.addForm.bookImg = URL.createObjectURL(file.raw);
+      },
       //作者
       formatAuthor: function (row, column) {
         return row.bookInfo.split('/')[0];
@@ -229,11 +244,12 @@
       handleAdd: function () {
         this.addFormVisible = true;
         this.addForm = {
-          name: '',
-          sex: -1,
-          age: 0,
+          title: '',
+          grade: '',
+          bookInfo: '',
+          bookImg: '',
           birth: '',
-          addr: ''
+          description: ''
         };
       },
       //编辑
@@ -268,6 +284,7 @@
               //NProgress.start();
               let para = Object.assign({}, this.addForm);
               para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+              console.log(para, 'params');
               // addUser(para).then((res) => {
               // 	this.addLoading = false;
               // 	//NProgress.done();

@@ -4,19 +4,50 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
+let cors = require('cors')
+
+let jwt = require('jsonwebtoken');
+
 let indexRouter = require('./routes/index');
 
 let app = express();
 
+app.use(cors({credentials: true, origin: 'http://localhost:8082'}))
+
 // allow cross
 let allowCrossDomain = function(req, res, next) {
+  // 响应头设置
   res.header('Access-Control-Allow-Origin', 'http://localhost:8082');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  // res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'content-type,token,id');
+  res.header("Access-Control-Request-Headers", "content-Type, Authorization");
   res.header('Access-Control-Allow-Credentials','true');
   next();
 };
 app.use(allowCrossDomain);
+
+// 拦截器
+app.use(function(req, res, next){
+  let authorization = req.get('Authorization');
+  // 登陆 注册 上传 非授权
+  if(req.path === '/api/login'){
+    next()
+  }else if(req.path === '/api/register'){
+    next();
+  }else if(req.path === '/api/upload'){
+    next();
+  }else{
+    let secretOrPrivateKey= "This is perfect projects.";
+    jwt.verify(authorization, secretOrPrivateKey, function (err, decode) {
+      if (err) {  //  时间失效的时候/ 伪造的token
+        res.status(403).send('认证无效，请重新登录。');
+      } else {
+        next();
+      }
+    })
+  }
+})
 
 // import route
 let router = express.Router();
@@ -64,6 +95,10 @@ app.use('/api/books/updateBook', bookUpdate);
 app.use('/api/books/addBook', bookAdd);
 app.use('/api/books/bookDetails', bookDetails);
 
+// 文件上传
+let uploadFile = require('./routes/uploadFile');
+
+app.use('/api/upload', uploadFile);
 
 //使用注册
 app.use('/api/register', userAuth);

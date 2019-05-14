@@ -40,6 +40,7 @@ router.post('/',function(req, res, next){
             return new AuthInfo({
                 username: username,
                 userpswd: md5String
+                // created: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
             }).save();
         }).then(data => {
             console.log(data, 'data2')

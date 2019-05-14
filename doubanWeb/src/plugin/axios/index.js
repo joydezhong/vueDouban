@@ -9,7 +9,7 @@ axios.defaults.baseURL = baseApi;
 axios.defaults.withCredentials = true;
 axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
 
-// axios.defaults.headers['authorization'] = localStorage.getItem("token");
+axios.defaults.headers['Authorization'] = sessionStorage.getItem("token");
 
 axios.interceptors.response.use (
   res => {

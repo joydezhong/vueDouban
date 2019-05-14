@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var AuthInfo = require('../models/authModel');
 
+var jwt = require('jsonwebtoken');
+
 
 //对话框模式 省去get页面渲染方式
 
@@ -26,6 +28,7 @@ router.post('/',function(req, res, next){
     var queryString = {username: username, userpswd: md5String};
     res.set({'Content-type': 'application/json;charset=utf-8'});
     console.log(queryString)
+
     var tokenString = require('crypto').createHash('md5').update(JSON.stringify(queryString)).digest('hex'); // md5 token
 
     AuthInfo.findOne(queryString).then(data => {
@@ -38,7 +41,15 @@ router.post('/',function(req, res, next){
             }
         }).then(data => {
         		console.log(data);
-        		res.send({ code: 1, message: '登陆成功', token: tokenString })
+
+        		/***jwt生成token***/
+            let content = {username: username};  // 要生成token的主题信息
+            let secretOrPrivateKey= "This is perfect projects."; // 这是加密的key（密钥） 根据个人自定义
+            let token = jwt.sign(content, secretOrPrivateKey, {
+              expiresIn: 60 * 60 * 24 * 7  // 一周过期
+            });
+
+        		res.send({ code: 1, message: '登陆成功', token: token })
         })
     }).catch( err => {
     	if(err){
