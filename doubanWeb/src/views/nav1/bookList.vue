@@ -7,7 +7,9 @@
     <el-row :gutter="gutter" v-loading="listLoading">
       <el-col v-for="item in data" :span="6" :key="item.bookId" :offset="0" style="margin-top: 30px">
         <el-card :body-style="{ padding: '0px' }">
-          <img :src="`https://images.weserv.nl/?url=${item.bookImg}`" class="image">
+          <img
+            :src="(item.bookImg.indexOf('doubanio.com') != -1)?`https://images.weserv.nl/?url=${item.bookImg}`:item.bookImg"
+            class="image">
           <div style="padding: 14px;">
             <span style="font-weight: bold">{{item.title}}</span>
             <p class="bottom clearfix">

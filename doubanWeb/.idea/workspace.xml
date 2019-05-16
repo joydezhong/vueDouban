@@ -4,15 +4,16 @@
     <list default="true" id="b8f34e60-67dd-4d63-b7e1-c1111499aa2d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../doubanHandle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../doubanHandle/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../doubanHandle/models/authModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/models/authModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../doubanHandle/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../doubanHandle/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../doubanHandle/routes/loginAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/routes/loginAuth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../doubanHandle/routes/userAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/routes/userAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/models/bookModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/models/bookModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/public/images/upload_132924494e66826dae0728de6508a7d4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/public/images/upload_cd1a409818fb1dbcf800ce58432ab53c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/public/images/upload_f90c39f78ea984d4dfa63ae9c3e1a967.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/routes/bookAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/routes/bookAdd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/routes/bookRemove.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/routes/bookRemove.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/routes/bookUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/routes/bookUpdate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../doubanHandle/routes/uploadFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../doubanHandle/routes/uploadFile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugin/axios/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugin/axios/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/bookList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/bookList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/bookManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/bookManage.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -86,54 +87,72 @@
     <session id="1088440462">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.27" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
           <entry key="js" value="3" />
-          <entry key="vue" value="4" />
+          <entry key="vue" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
           <entry key="JavaScript" value="3" />
-          <entry key="Vue.js" value="4" />
+          <entry key="Vue.js" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="25" />
           <entry key="js" value="28" />
-          <entry key="vue" value="385" />
+          <entry key="vue" value="1393" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="25" />
           <entry key="JavaScript" value="28" />
-          <entry key="Vue.js" value="385" />
+          <entry key="Vue.js" value="1393" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/nav2/bookManage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="189" column="34" lean-forward="true" selection-start-line="189" selection-start-column="34" selection-end-line="189" selection-end-column="34" />
+            <state relative-caret-position="589">
+              <caret line="31" column="139" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="139" />
               <folding>
                 <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-table#0;n#section#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-pagination#0;n#el-col#1;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#el-dialog#0;n#section#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#1;n#section#0;n#template#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/nav1/bookList.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="75" column="12" lean-forward="true" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
+              <folding>
+                <element signature="n#style#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#em#0;n#p#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#em#1;n#p#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,8 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/nav1/Table.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="48" column="15" lean-forward="true" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+            <state relative-caret-position="4047">
+              <caret line="213" column="18" selection-start-line="213" selection-start-column="18" selection-end-line="213" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -160,9 +179,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>proxyTable</find>
-      <find>devMiddleware</find>
-      <find>proxyMiddleware</find>
       <find>entryOption</find>
       <find>main.js</find>
       <find>merge</find>
@@ -180,7 +196,6 @@
       <find>width: 64px</find>
       <find>handleopen</find>
       <find>handleCurrentChange</find>
-      <find>addLoading</find>
       <find>util</find>
       <find>getLists</find>
       <find>getUsers</find>
@@ -190,6 +205,10 @@
       <find>total</find>
       <find>addFormVisible</find>
       <find>handleAdd</find>
+      <find>NProgress</find>
+      <find>addLoading</find>
+      <find>editFormVisible</find>
+      <find>sels</find>
     </findStrings>
     <dirStrings>
       <dir>D:\learnreact\DoubanHandle\vue-admin-master</dir>
@@ -217,13 +236,13 @@
         <option value="$PROJECT_DIR$/src/views/Home.vue" />
         <option value="$PROJECT_DIR$/src/App.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/bookDetails.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav1/bookList.vue" />
         <option value="$PROJECT_DIR$/src/views/register.vue" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/views/Register.vue" />
         <option value="$PROJECT_DIR$/src/plugin/axios/index.js" />
         <option value="$PROJECT_DIR$/src/assets/global.css" />
         <option value="$PROJECT_DIR$/src/views/nav2/bookManage.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/bookList.vue" />
       </list>
     </option>
   </component>
@@ -302,7 +321,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../doubanHandle" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -347,12 +366,14 @@
       <workItem from="1557451079485" duration="14762000" />
       <workItem from="1557482001176" duration="648000" />
       <workItem from="1557711152279" duration="10709000" />
-      <workItem from="1557797305307" duration="11664000" />
+      <workItem from="1557797305307" duration="12267000" />
+      <workItem from="1557883672847" duration="15409000" />
+      <workItem from="1557970072339" duration="92000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141687000" />
+    <option name="totallyTimeSpent" value="157791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -599,9 +620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -609,20 +627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5168">
           <caret line="272" column="20" selection-start-line="272" selection-start-column="20" selection-end-line="272" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/bookList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#em#0;n#p#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#em#1;n#p#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -637,9 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1045">
           <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
-          <folding>
-            <element signature="n#style#0;n#el-button#0;n#el-form-item#2;n#el-form#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -657,17 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/bookDetails.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-rate#0;n#el-col#0;n#el-row#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/global.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -675,22 +665,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/Table.vue">
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/bookDetails.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="48" column="15" lean-forward="true" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+        <state relative-caret-position="342">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav2/bookManage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="189" column="34" lean-forward="true" selection-start-line="189" selection-start-column="34" selection-end-line="189" selection-end-column="34" />
+        <state relative-caret-position="589">
+          <caret line="31" column="139" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="139" />
           <folding>
             <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-table#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-pagination#0;n#el-col#1;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#el-dialog#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#1;n#section#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/Table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4047">
+          <caret line="213" column="18" selection-start-line="213" selection-start-column="18" selection-end-line="213" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/bookList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="75" column="12" lean-forward="true" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#em#0;n#p#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#em#1;n#p#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

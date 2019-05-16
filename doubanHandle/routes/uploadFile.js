@@ -19,7 +19,8 @@ router.post('/', function(req, res, next){
     let imgPath = files.file.path;
     let imgName = files.file.name;
     console.log(imgName, imgPath);
-    res.json({code: 1, data: { name: imgName, path: imgPath }});
+    let arr = imgPath.split('\\');
+    res.json({code: 1, data: { name: imgName, path: 'http://192.168.31.18:3000/images/' + arr[arr.length-1] }});
   })
 
 

@@ -7,21 +7,37 @@ let BookList = require('../models/bookModel');
 router.post('/', function(req, res, next){
   console.log(req.body, 'add params')
 
-  const id = req.body._id,
-    title = req.body.title,
-    grade = req.body.grade,
-    description = req.body.description;
+  const title = req.body.title,
+        bookInfo = req.body.bookInfo,
+        bookImg = req.body.bookImg,
+        grade = req.body.grade,
+        description = req.body.description;
 
-  const updateStr = {
-    title: title,
-    grade: grade,
-    description: description
-  };
+  let bookId = Math.floor(Math.random() * 100000000);
+
+  function checkIn (i){
+    BookList.find({bookId: i}).exec( function(err, data){  //查找是否存在该bookId
+      if(err){
+        res.status(500).json({ error: err });
+      }else{
+        if(data.length > 0){
+          bookId --;
+          checkIn(bookId);
+        }
+      }
+    })
+  }
+  checkIn(bookId);
+
 
   const newBook = new BookList({
     title: title,
+    bookId: bookId,
     grade: grade,
-    description: description
+    bookImg: bookImg,
+    bookInfo: bookInfo,
+    description: description,
+    $inc: { flag: 1 }
   });
 
   // 新增保存
@@ -29,7 +45,7 @@ router.post('/', function(req, res, next){
     if(err){
       res.status(500).json({ error: err });
     }else{
-      res.json({ code: 1, data: data })
+      res.json({ code: 1, data: data });
     }
   });
 

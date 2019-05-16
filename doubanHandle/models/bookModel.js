@@ -11,6 +11,7 @@ let BookListSchema = new Schema({
   bookImg: String,
   bookInfo: String,
   description: String,
+  flag: { type: Number, default: 0 }
 });
 
 BookListSchema.plugin(mongoosePaginate);

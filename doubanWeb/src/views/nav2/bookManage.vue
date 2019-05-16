@@ -28,7 +28,10 @@
       </el-table-column>
       <el-table-column prop="bookImg" label="图片">
         <template slot-scope="scope">
-          <img :src="`https://images.weserv.nl/?url=${scope.row.bookImg}`" width="40" height="50" alt="">
+          <img
+            :src="(scope.row.bookImg.indexOf('doubanio.com') != -1)?`https://images.weserv.nl/?url=${scope.row.bookImg}`:scope.row.bookImg"
+            width="40"
+            height="50">
         </template>
       </el-table-column>
       <el-table-column prop="bookInfo" label="作者" :formatter="formatAuthor" sortable>
@@ -61,25 +64,44 @@
     </el-col>
 
     <!--编辑界面-->
-    <el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
+    <el-dialog title="编辑" :visible.sync="editFormVisible" :close-on-click-modal="false">
       <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-        <el-form-item label="姓名" prop="name">
-          <el-input v-model="editForm.name" auto-complete="off"></el-input>
+        <el-form-item label="书名" prop="title">
+          <el-input v-model="editForm.title" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="性别">
-          <el-radio-group v-model="editForm.sex">
-            <el-radio class="radio" :label="1">男</el-radio>
-            <el-radio class="radio" :label="0">女</el-radio>
-          </el-radio-group>
+        <el-form-item label="图片" prop="bookImg">
+          <el-upload
+            class="avatar-uploader"
+            action="http://192.168.31.18:3000/api/upload"
+            :show-file-list="false"
+            :on-success="handleUpdateSuccess"
+          >
+            <img v-if="editForm.bookImg" :src="editForm.bookImg" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
         </el-form-item>
-        <el-form-item label="年龄">
-          <el-input-number v-model="editForm.age" :min="0" :max="200"></el-input-number>
+        <el-form-item label="评分" prop="grade">
+          <el-input-number v-model="editForm.grade" :min="0" :max="10"></el-input-number>
         </el-form-item>
-        <el-form-item label="生日">
-          <el-date-picker type="date" placeholder="选择日期" v-model="editForm.birth"></el-date-picker>
+        <el-form-item label="出版时间" prop="birth">
+          <el-date-picker
+            type="date"
+            placeholder="选择日期"
+            v-model="editForm.birth"
+            value-format="yyyy-MM-dd"
+          ></el-date-picker>
         </el-form-item>
-        <el-form-item label="地址">
-          <el-input type="textarea" v-model="editForm.addr"></el-input>
+        <el-form-item label="出版社" prop="publisher">
+          <el-input v-model="editForm.publisher" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="出版国家" prop="publishAddress">
+          <el-input v-model="editForm.publishAddress" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="作者" prop="author">
+          <el-input v-model="editForm.author" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="描述" prop="description">
+          <el-input type="textarea" v-model="editForm.description"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -110,10 +132,21 @@
           <el-input-number v-model="addForm.grade" :min="0" :max="10"></el-input-number>
         </el-form-item>
         <el-form-item label="出版时间" prop="birth">
-          <el-date-picker type="date" placeholder="选择日期" v-model="addForm.birth"></el-date-picker>
+          <el-date-picker
+            type="date"
+            placeholder="选择日期"
+            v-model="addForm.birth"
+            value-format="yyyy-MM-dd"
+          ></el-date-picker>
         </el-form-item>
-        <el-form-item label="作者信息" prop="bookInfo">
-          <el-input v-model="addForm.bookInfo" auto-complete="off"></el-input>
+        <el-form-item label="出版社" prop="publisher">
+          <el-input v-model="addForm.publisher" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="出版国家" prop="publishAddress">
+          <el-input v-model="addForm.publishAddress" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="作者" prop="author">
+          <el-input v-model="addForm.author" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="描述" prop="description">
           <el-input type="textarea" v-model="addForm.description"></el-input>
@@ -154,14 +187,8 @@
         },
         //编辑界面数据
         editForm: {
-          id: 0,
-          name: '',
-          sex: -1,
-          age: 0,
-          birth: '',
-          addr: ''
-        },
 
+        },
         addFormVisible: false,//新增界面是否显示
         addLoading: false,
         addFormRules: {
@@ -173,17 +200,23 @@
         addForm: {
           title: '',
           grade: '',
-          bookInfo: '',
+          author: '',
           bookImg: '',
           birth: '',
-          description: ''
+          description: '',
+          publisher: '',
+          publishAddress: ''
         }
 
       }
     },
     methods: {
       handleAvatarSuccess(res, file) {
-        this.addForm.bookImg = URL.createObjectURL(file.raw);
+        // this.addForm.bookImg = URL.createObjectURL(file.raw);
+        this.addForm.bookImg = res.data.path;
+      },
+      handleUpdateSuccess(res, file){
+        this.editForm.bookImg = res.data.path;
       },
       //作者
       formatAuthor: function (row, column) {
@@ -220,17 +253,21 @@
           type: 'warning'
         }).then(() => {
           this.listLoading = true;
-          //NProgress.start();
-          let para = { id: row.id };
-          // removeUser(para).then((res) => {
-          // 	this.listLoading = false;
-          // 	//NProgress.done();
-          // 	this.$message({
-          // 		message: '删除成功',
-          // 		type: 'success'
-          // 	});
-          // 	this.getUsers();
-          // });
+          let params = { id: row._id };
+          this.$myPost(
+            `/api/books/removeBook`,
+            params,
+            res => {
+              console.log(res, 'res')
+              if(res.code == 1){
+                this.$message({
+                  message: '删除成功',
+                  type: 'success'
+                });
+                this.getLists();
+              }
+            }
+          )
         }).catch(() => {
 
         });
@@ -238,7 +275,58 @@
       //显示编辑界面
       handleEdit: function (index, row) {
         this.editFormVisible = true;
-        this.editForm = Object.assign({}, row);
+
+        let paramsObject = Object.assign({}, row);
+        let arr = paramsObject.bookInfo.split('/');
+        paramsObject.birth = arr[arr.length-1];
+        paramsObject.publisher = arr[arr.length-2];
+        if(paramsObject.bookInfo.indexOf(']') != -1){
+          let locationArr = arr[0].split(']');
+          paramsObject.author = locationArr[locationArr.length-1];
+          paramsObject.publishAddress = locationArr[0].replace('[','');
+        }else{
+          paramsObject.author = '';
+          paramsObject.publishAddress = '';
+        }
+        if(paramsObject.bookImg.indexOf('doubanio.com') != -1){
+          paramsObject.bookImg = 'https://images.weserv.nl/?url=' + paramsObject.bookImg;
+        }
+        delete paramsObject.bookInfo;
+        this.editForm = paramsObject;
+      },
+      //编辑
+      editSubmit: function () {
+        this.$refs.editForm.validate((valid) => {
+          if (valid) {
+              this.editLoading = true;
+              let params = Object.assign({}, this.editForm);
+              params.bookInfo = "[" + params.publishAddress + "]" + params.author + "/" + params.publisher + "/" + params.birth;
+              delete params.birth;
+              delete params.publishAddress;
+              delete params.author;
+              delete params.publisher;
+              console.log(params, 'params');
+
+              this.$myPost(
+                `/api/books/updateBook`,
+                params,
+                res => {
+                  console.log(res, 'res');
+                  this.editLoading = false;
+                  this.editFormVisible = false;
+                  if(res.code == 1){
+                    this.$message({
+                      message: '更新成功',
+                      type: 'success'
+                    });
+                  }else{
+                    this.$message.error('error'+ res.data);
+                  }
+                  this.getLists();
+                }
+              )
+          }
+        });
       },
       //显示新增界面
       handleAdd: function () {
@@ -252,51 +340,37 @@
           description: ''
         };
       },
-      //编辑
-      editSubmit: function () {
-        this.$refs.editForm.validate((valid) => {
-          if (valid) {
-            this.$confirm('确认提交吗？', '提示', {}).then(() => {
-              this.editLoading = true;
-              //NProgress.start();
-              let para = Object.assign({}, this.editForm);
-              // editUser(para).then((res) => {
-              // 	this.editLoading = false;
-              // 	//NProgress.done();
-              // 	this.$message({
-              // 		message: '提交成功',
-              // 		type: 'success'
-              // 	});
-              // 	this.$refs['editForm'].resetFields();
-              // 	this.editFormVisible = false;
-              // 	this.getUsers();
-              // });
-            });
-          }
-        });
-      },
       //新增
       addSubmit: function () {
         this.$refs.addForm.validate((valid) => {
           if (valid) {
-            this.$confirm('确认提交吗？', '提示', {}).then(() => {
-              this.addLoading = true;
-              //NProgress.start();
-              let para = Object.assign({}, this.addForm);
-              para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-              console.log(para, 'params');
-              // addUser(para).then((res) => {
-              // 	this.addLoading = false;
-              // 	//NProgress.done();
-              // 	this.$message({
-              // 		message: '提交成功',
-              // 		type: 'success'
-              // 	});
-              // 	this.$refs['addForm'].resetFields();
-              // 	this.addFormVisible = false;
-              // 	this.getUsers();
-              // });
-            });
+            this.addLoading = true;
+            let params = Object.assign({}, this.addForm);
+            params.bookInfo = "[" + params.publishAddress + "]" + params.author + "/" + params.publisher + "/" + params.birth;
+            delete params.birth;
+            delete params.publishAddress;
+            delete params.author;
+            delete params.publisher;
+            console.log(params, 'params');
+
+            this.$myPost(
+              `/api/books/addBook`,
+              params,
+              res => {
+                console.log(res, 'res');
+                this.addLoading = false;
+                this.addFormVisible = false;
+                if(res.code == 1){
+                  this.$message({
+                    message: '提交成功',
+                    type: 'success'
+                  });
+                }else{
+                  this.$message.error('error'+ res.data);
+                }
+                this.getLists();
+              }
+            )
           }
         });
       },
@@ -305,22 +379,28 @@
       },
       //批量删除
       batchRemove: function () {
-        var ids = this.sels.map(item => item.id).toString();
+        let ids = this.sels.map(item => item._id);
         this.$confirm('确认删除选中记录吗？', '提示', {
           type: 'warning'
         }).then(() => {
           this.listLoading = true;
-          //NProgress.start();
-          let para = { ids: ids };
-          // batchRemoveUser(para).then((res) => {
-          // 	this.listLoading = false;
-          // 	//NProgress.done();
-          // 	this.$message({
-          // 		message: '删除成功',
-          // 		type: 'success'
-          // 	});
-          // 	this.getUsers();
-          // });
+          let params = { id: ids };
+          console.log(params, 'params');
+
+          this.$myPost(
+            `/api/books/removeBook`,
+            params,
+            res => {
+              console.log(res, 'res')
+              if(res.code == 1){
+                this.$message({
+                  message: '批量删除成功',
+                  type: 'success'
+                });
+                this.getLists();
+              }
+            }
+          )
         }).catch(() => {
 
         });

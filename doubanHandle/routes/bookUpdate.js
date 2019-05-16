@@ -10,11 +10,15 @@ router.post('/', function(req, res, next){
   const id = req.body._id,
     title = req.body.title,
     grade = req.body.grade,
+    bookInfo = req.body.bookInfo,
+    bookImg = req.body.bookImg,
     description = req.body.description;
 
   const updateStr = {
     title: title,
     grade: grade,
+    bookInfo: bookInfo,
+    bookImg: bookImg,
     description: description
   };
   const ids = {

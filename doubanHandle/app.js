@@ -30,12 +30,14 @@ app.use(allowCrossDomain);
 // 拦截器
 app.use(function(req, res, next){
   let authorization = req.get('Authorization');
-  // 登陆 注册 上传 非授权
+  // 登陆 注册 图片文件 上传 非授权
   if(req.path === '/api/login'){
     next()
   }else if(req.path === '/api/register'){
     next();
   }else if(req.path === '/api/upload'){
+    next();
+  }else if(req.path.indexOf('/images')!=-1){
     next();
   }else{
     let secretOrPrivateKey= "This is perfect projects.";
