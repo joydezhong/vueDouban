@@ -33,7 +33,7 @@
 	</section>
 </template>
 <script>
-	import { getUserList } from '../../api/api';
+	// import { getUserList } from '../../api/api';
 	//import NProgress from 'nprogress'
 	export default {
 		data() {
@@ -56,13 +56,13 @@
 				let para = {
 					name: this.filters.name
 				};
-				this.loading = true;
+				// this.loading = true;
 				//NProgress.start();
-				getUserList(para).then((res) => {
-					this.users = res.data.users;
-					this.loading = false;
-					//NProgress.done();
-				});
+				// getUserList(para).then((res) => {
+				// 	this.users = res.data.users;
+				// 	this.loading = false;
+				// 	//NProgress.done();
+				// });
 			}
 		},
 		mounted() {

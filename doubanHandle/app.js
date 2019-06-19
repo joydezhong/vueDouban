@@ -32,7 +32,7 @@ app.use(function(req, res, next){
   let authorization = req.get('Authorization');
   // 登陆 注册 图片文件 上传 非授权
   if(req.path === '/api/login'){
-    next()
+    next();
   }else if(req.path === '/api/register'){
     next();
   }else if(req.path === '/api/upload'){
@@ -59,6 +59,9 @@ let bookRemove = require('./routes/bookRemove');
 let bookUpdate = require('./routes/bookUpdate');
 let bookAdd = require('./routes/bookAdd');
 let bookDetails = require('./routes/bookDetails');
+
+let movieLists = require('./routes/movieLists');
+let movieRemove = require('./routes/movieRemove');
 
 let userAuth = require('./routes/userAuth');
 let loginAuth = require('./routes/loginAuth');
@@ -88,7 +91,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.use('/', indexRouter);
 // outport api
 app.use('/api/books/bookLists', bookLists);
@@ -96,6 +98,9 @@ app.use('/api/books/removeBook', bookRemove);
 app.use('/api/books/updateBook', bookUpdate);
 app.use('/api/books/addBook', bookAdd);
 app.use('/api/books/bookDetails', bookDetails);
+
+app.use('/api/movies/movieLists', movieLists);
+app.use('/api/movies/movieRemove', movieRemove);
 
 // 文件上传
 let uploadFile = require('./routes/uploadFile');
