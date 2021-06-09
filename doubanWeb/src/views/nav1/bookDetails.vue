@@ -3,7 +3,7 @@
     <el-divider content-position="left">《{{data.title}}》</el-divider>
     <el-row :gutter="30">
       <el-col :span="8">
-        <div class="grid-content bg-purple go-right">
+        <div class="grid-content bg-purple go-left">
           <img v-show="showImg" :src="`https://images.weserv.nl/?url=${data.bookImg}`" class="image">
           <p v-if="isLoading" v-loading="isLoading" class="image" style="text-align: center"></p>
         </div>

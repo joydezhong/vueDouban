@@ -10,14 +10,17 @@
     <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
     <el-form-item style="width:100%;">
       <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
-      <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
+      <!-- <el-button @click.native.prevent="handleReset2">重置</el-button> -->
     </el-form-item>
+    <div class="register">
+      <el-link @click="handleRegister" type="primary">注册<i class="el-icon-right"></i></el-link>
+    </div>
   </el-form>
 </template>
 
 <script>
-  // import { requestLogin } from '../api/api';
-  //import NProgress from 'nprogress'
+  import { requestLogin } from '../api/api';
+
   export default {
     data() {
       return {
@@ -43,29 +46,28 @@
       handleReset2() {
         this.$refs.ruleForm2.resetFields();
       },
+      handleRegister() {
+        this.$router.push('/register');
+      },
       handleSubmit2(ev) {
         let _this = this;
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
             this.logining = true;
             let loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
-            this.$myPost(
-              `/api/login`,
-              loginParams,
-              res => {
-                let { message, code, token } = res;
-                if (code !== 1) {
-                  this.$message({
-                    message: message,
-                    type: 'error'
-                  });
-                } else {
-                  sessionStorage.setItem('user', this.ruleForm2.account);
-                  sessionStorage.setItem('token', token);
-                  this.$router.push({ path: '/table' });
-                }
+            requestLogin(loginParams).then(res => {
+              let { message, code, token } = res;
+              if (code !== 1) {
+                this.$message({
+                  message: message,
+                  type: 'error'
+                });
+              } else {
+                sessionStorage.setItem('user', this.ruleForm2.account);
+                sessionStorage.setItem('token', token);
+                this.$router.push({ path: '/main' });
               }
-            )
+            })
           } else {
             console.log('error submit!!');
             return false;
@@ -79,7 +81,7 @@
 
 <style lang="scss" scoped>
   .login-container {
-    /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
     -webkit-border-radius: 5px;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -97,6 +99,15 @@
     }
     .remember {
       margin: 0px 0px 35px 0px;
+    }
+    .register {
+      display: flex;
+      justify-content: flex-end;
+      &:hover {
+        span {
+          text-decoration: none;
+        }
+      }
     }
   }
 </style>

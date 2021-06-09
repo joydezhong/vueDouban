@@ -21,10 +21,10 @@ let routes = [
         hidden: true
     },
     {
-      path: '/register',
-      component: Register,
-      name: '',
-      hidden: true
+        path: '/register',
+        component: Register,
+        name: '',
+        hidden: true
     },
     {
         path: '/404',
@@ -32,40 +32,50 @@ let routes = [
         name: '',
         hidden: true
     },
-    //{ path: '/main', component: Main },
+    { 
+        path: '/', 
+        component: Home, 
+        name: '主页', 
+        iconCls: 'fa fa-tachometer',
+        hidden: true,
+        children: [
+            { path: '/', component: Main, name: '主页', hidden: true },
+        ]
+    },
     {
-        path: '/',
+        path: '/listDisplay',
         component: Home,
         name: '列表展示',
         iconCls: 'fa fa-tachometer',//图标样式class
         children: [
-          { path: '/main', component: Main, name: '主页', hidden: true },
-          { path: '/table', component: Table, name: 'Table', hidden: true },
-          { path: '/form', component: Form, name: 'Form', hidden: true },
-          { path: '/user', component: user, name: '列表' },
-          { path: '/bookList', component: bookList, name: '书本列表' },
-          { path: '/movieList', component: movieList, name: '电影列表' },
-          { path: '/bookDetails', component: bookDetails, name: '书本详情', hidden: true }
+            { path: '/listDisplay/bookList', component: bookList, name: '书本列表'},
+            { path: '/listDisplay/bookList/bookDetails', component: bookDetails, name: '书本详情', hidden: true },
+            { path: '/listDisplay/movieList', component: movieList, name: '电影列表' },
+            // 备用 调试页面
+            { path: '/main', component: Main, name: '主页', hidden: true },
+            { path: '/table', component: Table, name: 'Table', hidden: true },
+            { path: '/form', component: Form, name: 'Form', hidden: true },
+            { path: '/user', component: user, name: '列表' },
         ]
     },
     {
-        path: '/',
+        path: '/listManage',
         component: Home,
         name: '列表管理',
         iconCls: 'fa fa-id-card-o',
         children: [
-            { path: '/bookManage', component: bookManage, name: '书本管理' },
-            { path: '/movieManage', component: movieManage, name: '电影管理' }
+            { path: '/listManage/bookManage', component: bookManage, name: '书本管理' },
+            { path: '/listManage/movieManage', component: movieManage, name: '电影管理' }
         ]
     },
     {
-        path: '/',
+        path: '/about',
         component: Home,
         name: '',
         iconCls: 'fa fa-address-card',
         leaf: true,//只有一个节点
         children: [
-            { path: '/page6', component: Page6, name: '导航三' }
+            { path: '/about/page6', component: Page6, name: '关于' }
         ]
     },
     {

@@ -1,18 +1,11 @@
 import axios from 'axios';
+import common from '@/plugin/axios/common';
 
-let base = '';
+let base = common.baseApi;
 
-export const requestLogin = params => { return axios.post(`${base}/login`, params).then(res => res.data); };
+export const requestLogin = params => { return axios.post(`${base}/api/login`, params).then(res => res); };
 
-export const getUserList = params => { return axios.get(`${base}/user/list`, { params: params }); };
+export const requestRegister = params => { return axios.post(`${base}/api/register`, params).then(res => res); };
 
-export const getUserListPage = params => { return axios.get(`${base}/user/listpage`, { params: params }); };
-
-export const removeUser = params => { return axios.get(`${base}/user/remove`, { params: params }); };
-
-export const batchRemoveUser = params => { return axios.get(`${base}/user/batchremove`, { params: params }); };
-
-export const editUser = params => { return axios.get(`${base}/user/edit`, { params: params }); };
-
-export const addUser = params => { return axios.get(`${base}/user/add`, { params: params }); };
+export const getBookList = params => { return axios.get(`${base}/api/books/bookLists`, { params: params }); };
 

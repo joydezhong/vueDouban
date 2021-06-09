@@ -7,17 +7,20 @@
     <el-form-item prop="checkPass">
       <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
-    <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+    <!-- <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox> -->
     <el-form-item style="width:100%;">
       <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">注册</el-button>
       <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
     </el-form-item>
+    <div class="login">
+      <el-link @click="handleLogin" type="primary">已有账号? 去登录<i class="el-icon-right"></i></el-link>
+    </div>
   </el-form>
 </template>
 
 <script>
-  // import { requestLogin } from '../api/api';
-  //import NProgress from 'nprogress'
+  import { requestRegister } from '../api/api';
+
   export default {
     data() {
       return {
@@ -43,31 +46,32 @@
       handleReset2() {
         this.$refs.ruleForm2.resetFields();
       },
+
+      handleLogin() {
+        this.$router.push('/login');
+      },
+
       handleSubmit2(ev) {
-        let _this = this;
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
             this.logining = true;
             let loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
-            this.$myPost(
-              `/api/register`,
-              loginParams,
-              res => {
-                let { message, code, token } = res;
-                if (code !== 1) {
-                  this.$message({
-                    message: message,
-                    type: 'error'
-                  });
-                } else {
-                  this.$message({
-                    message: message,
-                    type: 'success'
-                  });
-                  this.$router.push({ path: '/Login' });
-                }
+
+            requestRegister(loginParams).then(res => {
+              let { message, code, token } = res;
+              if (code !== 1) {
+                this.$message({
+                  message: message,
+                  type: 'error'
+                });
+              } else {
+                this.$message({
+                  message: message,
+                  type: 'success'
+                });
+                this.$router.push('/login');
               }
-            )
+            })
           } else {
             console.log('error submit!!');
             return false;
@@ -99,6 +103,15 @@
     }
     .remember {
       margin: 0px 0px 35px 0px;
+    }
+    .login {
+      display: flex;
+      justify-content: flex-end;
+      &:hover {
+        span {
+          text-decoration: none;
+        }
+      }
     }
   }
 </style>

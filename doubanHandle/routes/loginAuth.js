@@ -8,7 +8,7 @@ var AuthInfo = require('../models/authModel');
 var jwt = require('jsonwebtoken');
 
 
-//对话框模式 省去get页面渲染方式
+// 对话框模式 省去get页面渲染方式
 
 router.post('/',function(req, res, next){
     console.log('open post Login');

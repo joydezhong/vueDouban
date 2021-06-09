@@ -44,6 +44,7 @@
 </template>
 
 <script>
+  import { getBookList } from '../../api/api';
   export default {
     name: "bookList",
     data(){
@@ -69,12 +70,7 @@
         params.pageSize = this.pageSize;
         params.pageNum = this.pageNum;
         this.listLoading = true;
-        this.$myGet(
-          `/api/books/bookLists`,
-          {
-            params: params
-          },
-          res => {
+        getBookList(params).then(res => {
             console.log(res,"获取列表");
             this.listLoading = false;
             this.data = res.data.docs;
@@ -82,9 +78,7 @@
             this.pages = res.data.pages;
             this.total = res.data.total;
             this.firstDocs = res.data.docs && res.data.docs[0];
-          },
-          this
-        );
+        })
       },
       handleCurrentChange(page){
         this.pageNum = page;
@@ -92,7 +86,7 @@
         console.log(page, 'page');
       },
       handleClick(id){
-        this.$router.push(`/bookDetails?book=${id}`);
+        this.$router.push(`/listDisplay/bookList/bookDetails?book=${id}`);
       }
     }
   }

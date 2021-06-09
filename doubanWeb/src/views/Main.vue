@@ -1,6 +1,7 @@
 <template>
+<!-- 这是HOME页面 -->
 	<section>
-		main
+		<h2>welcome to Douban application by vue.</h2>
 	</section>
 </template>
 

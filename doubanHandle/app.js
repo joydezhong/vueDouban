@@ -74,7 +74,6 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error',console.error.bind(console, 'MongoDB connection error:'));
 
-
 let bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
